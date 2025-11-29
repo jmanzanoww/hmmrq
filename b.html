@@ -58,6 +58,7 @@
       padding: 20px;
       position: relative;
       overflow: hidden;
+      transition: opacity 0.5s ease;
     }
 
     @media (min-width: 768px) {
@@ -571,6 +572,41 @@
       100% { transform: translateY(4px) scale(1); }
     }
 
+    /* 🕒 Fullscreen countdown preloader */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-gradient);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      color: #fff;
+      text-align: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .preloader-label {
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    .preloader-number {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .preloader-sub {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -584,12 +620,19 @@
   </style>
 </head>
 <body>
+  <!-- Fullscreen countdown preloader -->
+  <div id="preloader">
+    <div class="preloader-label">Birthday surprise loading</div>
+    <div class="preloader-number" id="preloader-number">3</div>
+    <div class="preloader-sub">For my love, Milot 💖</div>
+  </div>
+
   <div class="noise"></div>
 
   <!-- Toast notification -->
   <div id="toast" class="toast">Copied to clipboard 💖</div>
 
-  <div class="container">
+  <div class="container" id="main-container" style="opacity: 0; pointer-events: none;">
     <!-- floating hearts -->
     <div class="floating-heart">❤</div>
     <div class="floating-heart">❤</div>
@@ -764,7 +807,7 @@ Always,
           <div class="polaroid">
             <img
               class="polaroid-img"
-              src="1.jpg?auto=compress&cs=tinysrgb&w=800"
+              src="3.jpg?auto=compress&cs=tinysrgb&w=800"
               alt="Memory 2"
             />
             <div class="polaroid-caption">Our drumstick date 🥰</div>
@@ -772,7 +815,7 @@ Always,
           <div class="polaroid">
             <img
               class="polaroid-img"
-              src="3.jpg?auto=compress&cs=tinysrgb&w=800"
+              src="4.jpg?auto=compress&cs=tinysrgb&w=800"
               alt="Memory 3"
             />
             <div class="polaroid-caption">Our late-night laugh trips 🌙</div>
@@ -780,7 +823,7 @@ Always,
           <div class="polaroid">
             <img
               class="polaroid-img"
-              src="4.jpg?auto=compress&cs=tinysrgb&w=800"
+              src="1.jpg?auto=compress&cs=tinysrgb&w=800"
               alt="Memory 4"
             />
             <div class="polaroid-caption">Just you & me, always 🫶</div>
@@ -801,7 +844,7 @@ Always,
           <div class="wish-item">
             <span class="wish-bullet">🌙</span>
             <div class="wish-text">
-              Sana lahat ng pagod  mapalitan ng peace, rest, at lambing
+              Sana lahat ng pagod mo sa work, mapalitan ng peace, rest, at lambing
               ko.
             </div>
           </div>
@@ -810,12 +853,6 @@ Always,
             <div class="wish-text">
               Sana lahat ng dreams mo, unti-unti nating maabot — kasama mo ako sa
               bawat hakbang.
-            </div>
-          </div>
-          <div class="wish-item">
-            <span class="wish-bullet">💫</span>
-            <div class="wish-text">
-             Mahal, huwag mo ako iiwan ha. Mahal na mahal kita
             </div>
           </div>
         </div>
@@ -838,14 +875,38 @@ Always,
 
         <!-- Hidden audio tag: replace src with your chosen song -->
         <audio id="bg-music" loop>
-          <!-- TODO: Put your own MP3 URL or relative path here -->
-          <!-- Example: <source src="music/our_song.mp3" type="audio/mpeg" /> -->
+          <!-- Example:
+          <source src="our_song.mp3" type="audio/mpeg" />
+          -->
         </audio>
       </section>
     </main>
   </div>
 
   <script>
+    // 🔢 Preloader countdown before showing page
+    const preloader = document.getElementById("preloader");
+    const preloaderNumber = document.getElementById("preloader-number");
+    const mainContainer = document.getElementById("main-container");
+
+    let preCount = 3;
+    preloaderNumber.textContent = preCount;
+
+    const preInterval = setInterval(() => {
+      preCount--;
+      if (preCount <= 0) {
+        clearInterval(preInterval);
+        preloader.style.opacity = "0";
+        setTimeout(() => {
+          preloader.style.display = "none";
+          mainContainer.style.opacity = "1";
+          mainContainer.style.pointerEvents = "auto";
+        }, 500);
+      } else {
+        preloaderNumber.textContent = preCount;
+      }
+    }, 1000);
+
     // 1) Typewriter effect (simple looping text)
     const typewriterText = document.getElementById("typewriter-text");
     const messages = [
@@ -1028,4 +1089,3 @@ Always,
   </script>
 </body>
 </html>
-
