@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Our 9th Monthsary✨</title>
-  <meta name="description" content=" 💖">
+  <title>Our 11th Monthsary✨</title>
+  <meta name="description" content="💖">
   <meta name="theme-color" content="#0f0f1a">
   <style>
     :root{
@@ -120,7 +120,6 @@
       body.no-scroll{ position:fixed; width:100%; }
     }
 
-    /* 9th intro theme */
     .intro-overlay{
       position:fixed; inset:0; z-index:100;
       min-height:100dvh; max-height:100dvh; overflow:hidden;
@@ -139,7 +138,7 @@
       z-index:-2;
     }
     .intro-overlay::after{
-      content:"9";
+      content:"11";
       position:absolute; inset:0;
       display:grid; place-items:center;
       font-size:min(55vw, 360px); line-height:1;
@@ -168,7 +167,7 @@
       filter:drop-shadow(0 8px 16px rgba(0,0,0,.35));
       display:grid; place-items:center;
       width:44px; height:44px; border-radius:999px;
-      font-weight:900; font-size:22px; color:#fff;
+      font-weight:900; font-size:18px; color:#fff;
       background:linear-gradient(180deg,#ff79c6,#ff6b6b);
       border:1px solid #ffffff33;
       animation:floatUp var(--dur, 4200ms) ease-in infinite;
@@ -184,7 +183,7 @@
 
     .intro-card{width:100%; max-width:720px; border-radius:18px; border:1px solid #ffffff1e; background:linear-gradient(180deg, #ffffff10, #ffffff05); box-shadow:var(--shadow); padding:18px}
     .intro-line{font-size:clamp(18px, 4.8vw, 24px); line-height:1.45; margin:.2rem 0 .6rem}
-    .intro-cta{margin-top:10px; display:flex; gap:10px; justify-content:center}
+    .intro-cta{margin-top:10px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
     .blink{animation:blink 1.2s steps(2, start) infinite}
     @keyframes blink{to{visibility:hidden}}
 
@@ -202,11 +201,13 @@
     .mini-player .controls{display:flex; gap:8px}
     .mini-player .btn{border:none; border-radius:12px; padding:10px 12px; background:#ffffff12; color:#fff; font-weight:700; }
 
-    /* 9th special */
-    .sixth{display:grid; gap:10px}
+    .special{display:grid; gap:10px}
     .balloons{position:relative; height:110px; overflow:hidden}
     .balloon{position:absolute; bottom:-10px; filter:drop-shadow(0 8px 16px rgba(0,0,0,.3)); font-size:28px;}
-    .balloon span{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:999px; background:linear-gradient(180deg,#ff79c6,#ff6b6b); color:white; font-weight:800}
+    .balloon span{
+      display:inline-grid; place-items:center; width:42px; height:42px; border-radius:999px;
+      background:linear-gradient(180deg,#ff79c6,#ff6b6b); color:white; font-weight:800; font-size:13px;
+    }
     .balloon i{display:block; width:2px; height:36px; background:#ffffff50; margin:0 auto; border-radius:2px}
     @keyframes float{ from{transform:translateY(18px)} to{transform:translateY(-130px)} }
 
@@ -232,6 +233,58 @@
 
     .future-grid{display:grid; gap:6px; margin-top:6px}
     .future-item{border-radius:12px; border:1px solid #ffffff22; padding:8px 10px; background:#ffffff08; font-size:14px}
+
+    .heart-game-area{
+      position:relative;
+      height:320px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid #ffffff22;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .heart-game-overlay{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:16px;
+      color:var(--muted);
+      background:rgba(0,0,0,.10);
+      z-index:1;
+      pointer-events:none;
+    }
+    .falling-heart{
+      position:absolute;
+      top:-40px;
+      font-size:30px;
+      line-height:1;
+      cursor:pointer;
+      user-select:none;
+      filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));
+      animation-name:fallHeart;
+      animation-timing-function:linear;
+      animation-fill-mode:forwards;
+      background:none;
+      border:none;
+      padding:0;
+    }
+    .falling-heart.caught{
+      animation:none !important;
+      transform:scale(1.2);
+      opacity:0;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    @keyframes fallHeart{
+      from{ transform:translateY(-10px) rotate(0deg); opacity:.96; }
+      to{ transform:translateY(360px) rotate(22deg); opacity:1; }
+    }
+
+    @media (max-width:420px){
+      .apol-row{grid-template-columns:1fr}
+    }
   </style>
 </head>
 <body>
@@ -241,7 +294,7 @@
   <div class="intro-stars"></div>
   <div class="intro-balloons" id="introBalloons"></div>
   <div class="intro-card">
-    <div class="pill" style="display:inline-block;margin-bottom:8px">🎉 9th Monthsary </div>
+    <div class="pill" style="display:inline-block;margin-bottom:8px">🎉 11th Monthsary </div>
     <div id="introLines"></div>
     <div class="intro-cta">
       <button id="skipIntro" class="cta" aria-label="Skip intro">⏭️ Skip</button>
@@ -256,7 +309,7 @@
     <div class="pill" id="monthsaryLabel">💕 Monthsary</div>
     <div class="links" aria-label="Quick sections">
       <a href="#apology">Apology</a>
-      <a href="#sixthSpecial">9th Special</a>
+      <a href="#special">11th Special</a>
       <a href="#countdown">Countdown</a>
       <a href="#photos">Memories</a>
       <a href="#loveletter">Letter</a>
@@ -267,6 +320,7 @@
       <a href="#polaroids">Polaroids</a>
       <a href="#promises">Promises</a>
       <a href="#future">Future Us</a>
+      <a href="#catchHeartGame">Catch Heart</a>
     </div>
     <div><button id="musicBtn" class="cta" aria-label="Play music">▶️</button></div>
   </div>
@@ -274,7 +328,7 @@
 
 <header class="container">
   <p class="pill">A little surprise for you 💌</p>
-  <h1 class="title" id="heroTitle">Happy 9th Monthsary Mahal!</h1>
+  <h1 class="title" id="heroTitle">Happy 11th Monthsary!</h1>
   <p class="subtitle" id="heroSub">Tap below to begin your surprise.</p>
   <button id="startBtn" class="cta">💖 Start the Magic</button>
   <div style="margin-top:10px" class="muted">Best with sound 🔊</div>
@@ -282,18 +336,18 @@
 
 <main class="container sections">
   <section id="apology" class="glass card feature-card">
-    <h2>Im sorry mahal </h2>
+    <h2>I’m sorry mahal</h2>
     <p class="muted" id="apolIntro">
-      Mahal, February na… at 9 months na tayo. 🥺💖
-      Sa dami ng araw na pinili mo pa rin ang “tayo,” gusto kong iparamdam sayo na hindi ko sasayangin ‘to.
-      Sorry sa mga times na nasaktan kita — at thank you kasi nandito ka pa rin. Mahal na mahal kita!
+      Mahal, 11 months na tayo. Sa dami ng araw na pinili mo ang “tayo,” gusto kong humingi ng tawad
+      sa mga pagkakataong nasaktan kita. Hindi ko gustong masira ang meron tayo. Babawi ako, mahal —
+      sa actions, sa consistency, at sa paraan ng pagmamahal ko sa’yo araw-araw.
     </p>
     <ul id="apolPoints" style="margin:.5rem 0 1rem; padding-left:1.1rem"></ul>
 
     <div class="apol-hold">
       <div class="apol-hint muted">Kung handa ka: <strong>hawakan nang matagal</strong> ang button para patawarin ako.</div>
       <div class="apol-row">
-        <button class="cta" id="forgiveHold">🤍 Mahal kita :)</button>
+        <button class="cta" id="forgiveHold">🤍 Patawarin mo ako</button>
         <div class="apol-progress" aria-hidden="true"><div class="apol-bar" id="forgiveBar"></div></div>
       </div>
       <div class="apol-note muted" id="forgiveNote"></div>
@@ -302,14 +356,14 @@
     <div id="apolReveal" class="card" style="display:none; border:1px solid #ffffff22">
       <strong>Salamat, Mahal. 💗</strong>
       <p class="muted" id="apolThanks">
-        February man ‘to, pero ang init ng pagmamahal ko sayo hindi seasonal.
-        Sa 9th monthsary, pangako ko: mas maingat, mas consistent, mas ikaw ang priority.
+        Hindi ko sasayangin ang chance na ‘to. Babawi ako sa’yo — hindi lang sa salita,
+        kundi sa pag-aalaga, pag-intindi, at pagpili sa’yo araw-araw.
       </p>
     </div>
   </section>
 
-  <section id="sixthSpecial" class="glass card feature-card sixth">
-    <h2>🎉 9th Monthsary Level Up</h2>
+  <section id="special" class="glass card feature-card special">
+    <h2>🎉 11th Monthsary Level Up</h2>
     <div class="balloons" id="balloons"></div>
 
     <div class="meter">
@@ -322,12 +376,12 @@
 
     <div class="card" style="border:1px solid #ffffff22; margin-top:4px">
       <strong>🎵 Song Dedication</strong>
-      <p class="muted" id="songNote">“I Can Wait sa SM” habang magkahawak-kamay basta magkasama. 🤍</p>
+      <p class="muted" id="songNote">“I Can Wait sa SM” habang magkahawak-kamay — basta magkasama. 🤍</p>
     </div>
 
     <div class="card" style="border:1px solid #ffffff22; margin-top:6px">
-      <strong>🕹️ Level 9 Achievements</strong>
-      <p class="muted" id="levelUpText">Loading our 9th monthsary achievements…</p>
+      <strong>🕹️ Level 11 Achievements</strong>
+      <p class="muted" id="levelUpText">Loading our 11th monthsary achievements…</p>
     </div>
   </section>
 
@@ -382,7 +436,7 @@
     <h2>🪄 Scratch to reveal</h2>
     <div class="scratch-wrap">
       <div class="reveal" id="scratchReveal">
-        Mahal, 9 months na tayo. Sa February na ‘to, gusto ko lang sabihin: ikaw pinipili ko araw-araw. 🥺💞
+        Mahal, 11 months na tayo. Patawad sa mga pagkukulang ko. Babawi ako sa’yo — mas maayos, mas totoo, at mas sigurado. 🥺💞
       </div>
       <canvas id="scratchCanvas"></canvas>
     </div>
@@ -400,11 +454,35 @@
 
   <section id="future" class="glass card feature-card">
     <h2>🗺️ Future Us</h2>
-    <p class="muted">9 months na tayong “tayo”. Eto ang mga plano ko with you, mahal:</p>
+    <p class="muted">11 months na tayong “tayo”. Ito ang gusto kong buuin at ayusin kasama ka:</p>
     <div class="future-grid" id="futureList"></div>
     <p class="muted" style="margin-top:6px;font-size:12px">
       Tip: Double-tap the title sa taas para sa konting heart magic. 💫
     </p>
+  </section>
+
+  <section id="catchHeartGame" class="glass card feature-card">
+    <h2>💘 Catch the Heart</h2>
+    <p class="muted">
+      Mahal, hulihin mo ang mga puso. Kapag naabot mo ang target, may message ako para sa’yo. 🥺
+    </p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 12px">
+      <span class="pill">Target: <strong id="heartTarget">11</strong></span>
+      <span class="pill">Score: <strong id="heartScore">0</strong></span>
+      <button id="startHeartGame" class="cta">▶️ Start Game</button>
+      <button id="resetHeartGame" class="cta">🔁 Reset</button>
+    </div>
+
+    <div id="heartGameArea" class="heart-game-area" aria-label="Catch the heart game area">
+      <div id="heartGameOverlay" class="heart-game-overlay">
+        Tap <strong>Start Game</strong>, then catch the falling hearts 💗
+      </div>
+    </div>
+
+    <div id="heartGameResult" class="card" style="margin-top:12px;border:1px solid #ffffff22;text-align:center;min-height:86px;display:grid;place-items:center">
+      <span class="muted">Ready ka na ba, mahal? ✨</span>
+    </div>
   </section>
 </main>
 
@@ -426,39 +504,38 @@
 </div>
 
 <footer class="container muted" style="text-align:center; padding-bottom:12px">
-  Made with ❤️ for you — 9 months and a lifetime to go. 🫶
+  Made with ❤️ for you — 11 months and a lifetime to go. 🫶
 </footer>
 
 <audio id="bgm" preload="none" loop crossorigin="anonymous"></audio>
 
 <script>
-/* ======= CONFIG ======= */
 const CONFIG = {
   yourName: "Job",
   partnerName: "Milot",
-  startDate: "2025-05-05",   // 9th monthsary = 2026-02-05
+  startDate: "2025-05-05",
 
-  heroTitle: "Happy 9th Monthsary, {{partner}}!",
-  heroSubtitle: "Tap below to begin your February surprise. ❄️💗",
+  heroTitle: "Happy 11th Monthsary, {{partner}}!",
+  heroSubtitle: "Tap below to begin your surprise. 🌷💗",
 
   introLines: [
-    "Mahal, February na… at 9 months na tayo. 💖",
-    "Alam kong hindi perpekto ang journey natin, pero proud ako na umabot tayo dito.",
-    "Salamat sa pasensya mo, sa pag-intindi, at sa pagpili sa atin kahit mahirap.",
-    "Kung may mga times na nasaktan kita… sorry mahal. 🥺",
-    "Sa 9th monthsary, gusto ko lang iparamdam sayo: ikaw  ang pinakaimportante.",
-    "Ikaw ang pahinga ko, at ikaw ang favorite kong yakapin.",
-    "Level 9 na tayo… pero gusto ko pang mag-level up with you forever. ♾️💗",
-    "Mahal di ako magbabago at sana ikaw din. Huwag ka magsasawa sakin ha. Mahal kita",
-    "Mahal na mahal kita. Pindutin mo na yung Continue—oo inuutusan kita ulit hehe ✨"
+    "Mahal, 11 months na tayo. 💖",
+    "Sa totoo lang, gusto kong simulan ito sa isang salitang matagal ko nang gustong iparamdam — sorry.",
+    "Patawad sa mga pagkakataong nasaktan kita, sa mga pagkukulang ko, at sa mga panahong hindi ko naibigay ang deserve mong lambing at pag-intindi.",
+    "Pero sa kabila ng lahat, salamat dahil nandiyan ka pa rin.",
+    "Salamat kasi pinipili mo pa rin ang ‘tayo’ kahit hindi naging madali.",
+    "Ngayong 11th monthsary natin, gusto kong sabihin na babawi ako, mahal.",
+    "Babawi ako sa actions, sa consistency, sa pag-intindi, at sa pagmamahal na ipaparamdam ko sa’yo araw-araw.",
+    "Hindi lang ako hihingi ng tawad — ipapakita ko sa’yo na deserve mong mahalin nang tama. 🥺💗",
+    "Pindutin mo na yung Continue, mahal… oo, inuutusan pa rin kita hehe ✨"
   ],
 
   letter:
-    "Lagi mo tatandaan Love, na araw araw ay minamahal kita at ikaw lagi ang nasa isip ko. Mahal kita sobra!",
+    "Mahal, happy 11th monthsary. Sa halos isang taon nating magkasama, ang dami kong narealize — lalo na kung gaano kita kahalaga sa buhay ko. Humihingi ako ng tawad sa mga pagkakataong nasaktan kita at sa mga pagkukulang ko bilang partner mo. Ayokong puro salita lang, kaya gusto kong sabihin sa’yo nang direkta: babawi ako. Babawi ako sa pag-aalaga, sa pag-intindi, sa effort, at sa pagmamahal na ipaparamdam ko sa’yo araw-araw. Hindi ko sasayangin ang meron tayo. Mahal na mahal kita, at gusto kong ayusin ito kasama ka. 💞",
 
   secretPrompt: "Anong tawagan natin? (hint: love o mahal)",
   secretAnswer: "love|mahal",
-  secretReveal: "Tama! Salamat sa tiwala, my {{call}}. 9 months down — forever to go. 😘",
+  secretReveal: "Tama! Salamat sa tiwala, my {{call}}. Babawi ako, araw-araw. 😘",
 
   musicUrl: "https://raw.githubusercontent.com/mimoypanot/hmmrq/main/ICanWaitSaSM.mp3",
 
@@ -469,42 +546,45 @@ const CONFIG = {
     "https://github.com/mimoypanot/hmmrq/blob/main/4.jpg?raw=true"
   ],
 
-  // 9 steps (reuse images only)
   journey: [
-    { m: 1, title:"Unang Kislap", cap:"Unang date kabado, pero naging safe dahil sa ngiti mo.", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" },
-    { m: 2, title:"Tamis at Tampuhan", cap:"Natuto tayong magsorry at mas magmahal.", img:"https://github.com/mimoypanot/hmmrq/blob/main/2.jpg?raw=true" },
-    { m: 3, title:"Mga Munting Alaala", cap:"Mahahabang kwento at lakad na tayo lang ang nakakaalam.", img:"https://github.com/mimoypanot/hmmrq/blob/main/3.jpg?raw=true" },
-    { m: 4, title:"Tayo Laban sa Lahat", cap:"Doon ko naramdaman na ikaw ang kakampi ko.", img:"https://github.com/mimoypanot/hmmrq/blob/main/4.jpg?raw=true" },
-    { m: 5, title:"Tahanan", cap:"Sa’yo ko nahanap ang pahinga.", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" },
-    { m: 6, title:"Mas Matatag", cap:"Mas totoo, mas tayo.", img:"https://github.com/mimoypanot/hmmrq/blob/main/2.jpg?raw=true" },
-    { m: 7, title:"Mas Clingy", cap:"Mas dumami yung ‘miss kita’ at ‘ingat ka’. 💞", img:"https://github.com/mimoypanot/hmmrq/blob/main/3.jpg?raw=true" },
-    { m: 8, title:"Mas Soft", cap:"Mas marunong magpakumbaba at mag-adjust.", img:"https://github.com/mimoypanot/hmmrq/blob/main/4.jpg?raw=true" },
-    { m: 9, title:"Level 9: Forever Mode", cap:"9 months na… pero ikaw pa rin ang pipiliin ko. ♾️💗", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" }
+    { m: 1, title:"Unang Kislap", cap:"Dito nagsimula ang kilig, hiya, at unti-unting paglalapit natin.", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" },
+    { m: 2, title:"Tamis at Tampuhan", cap:"Natuto tayong magsorry, umintindi, at ayusin ang hindi pagkakaunawaan.", img:"https://github.com/mimoypanot/hmmrq/blob/main/2.jpg?raw=true" },
+    { m: 3, title:"Mga Munting Alaala", cap:"Mga simpleng moment na naging napakahalaga dahil kasama kita.", img:"https://github.com/mimoypanot/hmmrq/blob/main/3.jpg?raw=true" },
+    { m: 4, title:"Tayo Laban sa Lahat", cap:"Unti-unti kong naramdaman na ikaw ang gusto kong kakampi palagi.", img:"https://github.com/mimoypanot/hmmrq/blob/main/4.jpg?raw=true" },
+    { m: 5, title:"Tahanan", cap:"Sa’yo ko nahanap ang pahinga at lambing na hindi kayang tumbasan ng kahit ano.", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" },
+    { m: 6, title:"Mas Matatag", cap:"Sa dami ng nangyari, nandito pa rin tayo at kumakapit sa isa’t isa.", img:"https://github.com/mimoypanot/hmmrq/blob/main/2.jpg?raw=true" },
+    { m: 7, title:"Mas Malambing", cap:"Mas dumami ang miss kita, ingat ka, at mga yakap na gusto kong ibigay sa’yo.", img:"https://github.com/mimoypanot/hmmrq/blob/main/3.jpg?raw=true" },
+    { m: 8, title:"Mas Maingat", cap:"Mas natuto akong i-check ang sarili ko at alagaan ang puso mo.", img:"https://github.com/mimoypanot/hmmrq/blob/main/4.jpg?raw=true" },
+    { m: 9, title:"Mas Malalim", cap:"Mas lumalim ang nararamdaman ko at mas tumibay ang kagustuhan kong ayusin ang lahat.", img:"https://github.com/mimoypanot/hmmrq/blob/main/1.jpg?raw=true" },
+    { m: 10, title:"Halos Isang Taon", cap:"Palapit na tayo sa malaking milestone, at gusto kong salubungin iyon nang mas buo tayo.", img:"https://github.com/mimoypanot/hmmrq/blob/main/2.jpg?raw=true" },
+    { m: 11, title:"Babawi Ako", cap:"11 months na tayo, at gusto kong ipakita sa’yo na ang love ko ay may kasamang pagbabago at effort. ♾️💗", img:"https://github.com/mimoypanot/hmmrq/blob/main/3.jpg?raw=true" }
   ],
 
   timeline: [
-    { when: "Unang Kislap", what:"Unang date, kabado pero gumaan dahil sa ngiti mo." },
-    { when: "Tamis at Tampuhan", what:"Unang tampuhan, unang tunay na pagpapatawad." },
-    { when: "Mga Munting Alaala", what:"Unang tawang may kasamang kilig." },
-    { when: "Tayo Laban sa Lahat", what:"Doon ko naramdaman na ikaw ang tahanan ko." },
-    { when: "Tahanan", what:"Mas maraming tahimik na gabi at 'mahal kita' bago matulog." },
-    { when: "Mas Matatag", what:"Mas lumalalim ang pagmamahal." },
-    { when: "Mas Clingy", what:"Mas dumami yung yakap at lambing." },
-    { when: "Mas Soft", what:"Mas marunong mag-handle ng emotions." },
-    { when: "Level 9: Forever Mode", what:"Hindi lang monthsary ang gusto ko — lifetime kasama ka." }
+    { when: "Unang Kislap", what:"Dito nagsimula ang kwento nating dalawa." },
+    { when: "Tamis at Tampuhan", what:"Dito natin unang naranasan ang pag-aayos at pagpapatawad." },
+    { when: "Mga Munting Alaala", what:"Ang simpleng moments naging espesyal dahil sa’yo." },
+    { when: "Tayo Laban sa Lahat", what:"Naramdaman kong gusto kitang maging kakampi palagi." },
+    { when: "Tahanan", what:"Sa’yo ko nahanap ang ginhawa at pahinga." },
+    { when: "Mas Matatag", what:"Natuto tayong mas kumapit sa isa’t isa." },
+    { when: "Mas Malambing", what:"Mas dumami ang lambingan at pag-aalala sa isa’t isa." },
+    { when: "Mas Maingat", what:"Mas natuto akong bantayan ang sarili kong pagkukulang." },
+    { when: "Mas Malalim", what:"Mas lumalim ang pagtingin at pagnanais kong ayusin ang lahat." },
+    { when: "Halos Isang Taon", what:"Excited ako sa susunod nating milestone — pero gusto kong makarating tayo roon nang maayos." },
+    { when: "Babawi Ako", what:"Hindi lang ako hihingi ng tawad. Gagawa ako ng paraan para maramdaman mong mahalaga ka." }
   ],
 
   quiz: [
-    { q: "Ano ang pinaka-perfect na date ngayon?", options:["Movie + yakap","Road trip + karaoke","Kape + mahabang kwento"], a:0 },
-    { q: "Ano ang pinaka-love ko sa’yo?", options:["Tawa mo","Pasensya mo","Lahat"], a:2 }
+    { q: "Ano ang gusto kong patunayan sa’yo ngayong 11th monthsary?", options:["Na marunong akong bumawi","Na kaya kitang tawanan lang","Na okay lang kahit masaktan ka"], a:0 },
+    { q: "Ano ang pinaka-love ko sa’yo?", options:["Ngiti mo","Pasensya mo","Lahat"], a:2 }
   ],
 
   coupons: [
     "Tahimik na usap, ikaw muna, makikinig lang ako.",
-    "Drumstick date tayo",
-    "Cuddle night",
-    "Ako maghuhugas ng plato habang nagluluto ka",
-    "Surprise breakfast in bed."
+    "Movie date na ikaw ang masusunod.",
+    "Cuddle night + no distractions.",
+    "One whole day ng lambing at effort para sa’yo.",
+    "Surprise breakfast or food date, sagot ko."
   ],
 
   reasons: [
@@ -513,56 +593,56 @@ const CONFIG = {
     "Ginagawa mong tahanan ang kahit saan.",
     "Tawa mo ang paborito kong tunog.",
     "Ikaw ang tahimik kong ginhawa.",
-    "Nakikita mo ang kabutihan sa’kin.",
-    "Pinapakilig mo ang ordinaryo.",
+    "Nakikita mo ang kabutihan sa’kin kahit may pagkukulang ako.",
+    "Pinapakilig mo ang ordinaryong araw.",
     "Ikaw ang pinakaligtas kong lugar."
   ],
 
   loveNotes: [
-    "9 months, buong puso. 💗",
-    "February na malamig, pero ikaw ang init.",
-    "Kape muna, ikaw lagi.",
-    "Magkahawak-kamay, panalo.",
-    "Kiss muna bago tulog. 😘",
+    "11 months, buong puso. 💗",
+    "Patawad mahal, babawi ako.",
+    "Mas pipiliin kita araw-araw.",
+    "Hindi ko sasayangin ang tiwala mo.",
+    "Kiss muna bago tampo. 😘",
     "I pick you. Always.",
     "Thank you for staying.",
-    "Level 9 tayo, forever next."
+    "Babawi ako sa actions, hindi lang sa words."
   ],
 
   promises: [
     "Makikinig muna bago sumagot.",
-    "Pipili ng salitang mabait.",
-    "Ise-celebrate ang maliliit na panalo.",
-    "Sabay tayong lalago.",
-    "Gagawa ng oras para sa yakap.",
+    "Pipili ng mga salitang mabait.",
+    "Magpapakita ng effort, hindi puro salita.",
+    "Gagawa ng oras para sa pag-uusap at lambing.",
+    "Aayusin ang sarili para hindi ka masaktan.",
     "Lalabanin ang problema, hindi ang isa’t isa."
   ],
 
   futurePlans: [
+    "Mas maayos na communication para hindi na lumaki ang tampuhan.",
     "More dates kahit simple lang, basta magkasama.",
-    "Weekend pahinga + food trip + yakap.",
-    "More pictures together (mas marami pa!).",
     "Mas consistent na lambing at assurance.",
-    "Isang araw, hindi na monthsary lang ang sine-celebrate natin. 😉"
+    "Mas maraming effort na mararamdaman mo, hindi lang maririnig.",
+    "Mas masayang next milestone natin — buo, masaya, at maayos tayo."
   ],
 
   songNote: "“I Can Wait sa SM” habang magkahawak-kamay — basta magkasama. 🤍",
 
   apologyPoints: [
-    "Makikinig muna bago sumagot.",
-    "Hindi kita ipagpapalit sa init ng ulo.",
-    "Magpapaliwanag nang mahinahon, walang sigaw.",
-    "Pipiliin ka, araw-araw.",
-    "Magpapakita ng love sa actions, hindi lang words."
+    "Patawad sa mga pagkakataong nasaktan kita.",
+    "Babawi ako sa actions, hindi lang sa salita.",
+    "Mas makikinig ako bago sumagot.",
+    "Mas iingatan ko ang puso mo at ang relasyon natin.",
+    "Pipiliin kita, araw-araw, nang mas maayos at mas totoo."
   ],
 
   levelUps: [
-    "Level 9 unlocked: ‘Mahal, ikaw muna.’ skill 💞",
-    "EXP gained: +999 Love points, +999 Patience points",
-    "Achievement: ‘February Warmth’ — ikaw ang init ko",
-    "Daily quest: yakap + lambing + respect",
+    "Level 11 unlocked: ‘Babawi Ako’ skill 💞",
+    "EXP gained: +1111 Love points, +1111 Effort points",
+    "Achievement: ‘Still Choosing You’ — araw-araw",
+    "Daily quest: lambing + respect + consistency",
     "Secret buff: smile mo = instant kalma",
-    "Boss battle: tampuhan — teamwork tayo palagi"
+    "Boss battle: tampuhan — teamwork at pag-uusap ang panalo"
   ],
 
   scratch: { image: "", maskColor: "#b1b1c9" }
@@ -580,7 +660,6 @@ const SPEED = {
 
 document.documentElement.style.setProperty('--answer-fade', SPEED.answerFadeMs + 'ms');
 
-/* Static text */
 document.getElementById("heroTitle").textContent = CONFIG.heroTitle.replace("{{partner}}", CONFIG.partnerName);
 document.getElementById("heroSub").textContent = CONFIG.heroSubtitle;
 document.getElementById("startDateText").textContent = CONFIG.startDate;
@@ -588,11 +667,9 @@ document.getElementById("monthsaryLabel").textContent = `💕 ${CONFIG.yourName}
 document.getElementById("songNote").textContent = CONFIG.songNote;
 const typeLines = CONFIG.introLines.map(l => l.replace("{{partner}}", CONFIG.partnerName));
 
-/* Scroll lock during intro */
 function lockScroll(){ document.documentElement.classList.add('no-scroll'); document.body.classList.add('no-scroll'); }
 function unlockScroll(){ document.documentElement.classList.remove('no-scroll'); document.body.classList.remove('no-scroll'); }
 
-/* Web Audio type clicks */
 const TYPE_SFX = { ctx:null, enabled:false, gain:0.08, minHz:1800, maxHz:3000, durMs:22, attackMs:1, releaseMs:18 };
 function ensureAudioContext(){
   if(!TYPE_SFX.ctx){
@@ -628,7 +705,6 @@ window.addEventListener("pointerdown",armAudioOnce,{passive:true});
 window.addEventListener("keydown",armAudioOnce);
 window.addEventListener("touchstart",armAudioOnce,{passive:true});
 
-/* Intro typewriter */
 const overlay=document.getElementById("introOverlay");
 const introBox=document.getElementById("introLines");
 const skipBtn=document.getElementById("skipIntro");
@@ -672,7 +748,6 @@ function startType(){
   renderIntro();
 }
 
-/* Tulip shower */
 function tulipShower(durationMs=3000){
   const start=performance.now();
   const spawnEvery=90;
@@ -699,7 +774,6 @@ function tulipShower(durationMs=3000){
   spawn();
 }
 
-/* Music */
 const bgm=document.getElementById("bgm");
 if(CONFIG.musicUrl){ bgm.src = CONFIG.musicUrl; }
 
@@ -728,7 +802,6 @@ replayBtn.addEventListener("click", startType);
 contBtn.addEventListener("click", endIntro);
 startType();
 
-/* Background hearts */
 const canvas=document.getElementById("heartsCanvas");
 const ctx2=canvas.getContext("2d");
 function sizeCanvas(){ canvas.width=innerWidth; canvas.height=Math.max(innerHeight, window.screen.height); }
@@ -741,14 +814,14 @@ function heartPath(x,y,s){
   ctx2.bezierCurveTo(x, y+5*s, x+5*s, y+3*s, x+5*s, y);
   ctx2.bezierCurveTo(x+5*s, y-3*s, x, y-3*s, x, y);
 }
-function spawnHeart(){
+function spawnHeartBg(){
   const s=Math.random()*1.2+0.8;
   hearts.push({ x:Math.random()*canvas.width, y:canvas.height+20, vy:-(Math.random()*0.6+0.3), vx:(Math.random()-.5)*0.4, size:s*4+(Math.random()*6), hue:320+Math.random()*40, alpha:.7+Math.random()*0.3 });
 }
-for(let k=0;k<40;k++) spawnHeart();
+for(let k=0;k<40;k++) spawnHeartBg();
 function tick(){
   ctx2.clearRect(0,0,canvas.width,canvas.height);
-  if(hearts.length<100 && Math.random()<.6) spawnHeart();
+  if(hearts.length<100 && Math.random()<.6) spawnHeartBg();
   hearts.forEach(h=>{
     h.x+=h.vx; h.y+=h.vy;
     ctx2.beginPath();
@@ -761,7 +834,6 @@ function tick(){
 }
 tick();
 
-/* Mini player */
 const musicBtn=document.getElementById("musicBtn");
 const playPauseBtn=document.getElementById("playPauseBtn");
 const muteBtn=document.getElementById("muteBtn");
@@ -788,7 +860,6 @@ bgm.addEventListener("pause", updatePlayerUI);
 bgm.addEventListener("volumechange", updatePlayerUI);
 updatePlayerUI();
 
-/* Countdown */
 function parseYYYYMMDD(s){
   const m=/^(\d{4})-(\d{1,2})-(\d{1,2})$/.exec(s);
   if(!m) return null;
@@ -828,14 +899,12 @@ clearInterval(window.__monthTicker);
 window.__monthTicker=setInterval(updateCountdown,1000);
 updateCountdown();
 
-/* Ticker + reasons list */
 const ticker=document.getElementById("reasonsTicker");
 ticker.innerHTML = CONFIG.reasons.concat(CONFIG.reasons).map(r=>`&nbsp;&nbsp;• ${r}`).join(" ");
 ticker.style.setProperty('--marquee-dur', SPEED.tickerSeconds + 's');
 document.getElementById("reasonsList").innerHTML =
   "<ul style='margin:0; padding-left:1rem'>" + CONFIG.reasons.map(r=>`<li>${r}</li>`).join("") + "</ul>";
 
-/* Gallery */
 const grid=document.getElementById("photoGrid");
 const lb=document.getElementById("lightbox");
 const lbImg=document.getElementById("lightboxImg");
@@ -851,7 +920,6 @@ CONFIG.photos.forEach((src,idx)=>{
   img.addEventListener("dblclick", fireworks);
 });
 
-/* Letter + secret */
 document.getElementById("letterText").textContent = CONFIG.letter;
 document.getElementById("revealBtn").addEventListener("click", ()=>{
   const a=prompt(CONFIG.secretPrompt || "Secret?");
@@ -867,7 +935,6 @@ document.getElementById("revealBtn").addEventListener("click", ()=>{
   }
 });
 
-/* Quiz */
 const quizList=document.getElementById("quizList");
 const scoreEl=document.getElementById("quizScore");
 let score=0, answered=0;
@@ -897,14 +964,12 @@ CONFIG.quiz.forEach((item,qi)=>{
   quizList.appendChild(li);
 });
 
-/* Coupons */
 document.getElementById("couponBtn").addEventListener("click", ()=>{
   const pick=CONFIG.coupons[Math.floor(Math.random()*CONFIG.coupons.length)];
   document.getElementById("couponOut").textContent="🎟️ "+pick;
   confetti();
 });
 
-/* Notes */
 document.getElementById("notesBtn").addEventListener("click", ()=>{
   for(let i=0;i<6;i++){
     noteDrop(CONFIG.loveNotes[Math.floor(Math.random()*CONFIG.loveNotes.length)]);
@@ -927,7 +992,6 @@ function noteDrop(text){
   d.animate([{transform:"translateY(0)",opacity:1},{transform:"translateY(110vh)",opacity:0}],{duration:dur,easing:"ease-in"}).onfinish=()=>d.remove();
 }
 
-/* Scratch */
 const scratchCanvas=document.getElementById("scratchCanvas");
 const sctx=scratchCanvas.getContext("2d");
 const sWrap=document.querySelector(".scratch-wrap");
@@ -968,7 +1032,6 @@ scratchCanvas.addEventListener("touchstart",()=>scratching=true,{passive:true});
 scratchCanvas.addEventListener("touchend",()=>scratching=false);
 scratchCanvas.addEventListener("touchmove",handleScratch,{passive:true});
 
-/* Polaroids */
 const wall=document.getElementById("polaroidWall");
 CONFIG.photos.forEach((src)=>{
   const card=document.createElement("div");
@@ -997,7 +1060,6 @@ CONFIG.photos.forEach((src)=>{
   });
 });
 
-/* Promises */
 const pl=document.getElementById("promiseList");
 CONFIG.promises.forEach((p)=>{
   const id="p_"+Math.random().toString(36).slice(2,7);
@@ -1014,7 +1076,6 @@ pl.addEventListener("change", ()=>{
   if(boxes.length && boxes.every(b=>b.checked)) fireworks();
 });
 
-/* Confetti + Fireworks */
 function confetti(){
   const count=90;
   for(let i=0;i<count;i++){
@@ -1059,19 +1120,17 @@ function fireworks(){
 document.getElementById("confettiBtn").addEventListener("click", confetti);
 document.getElementById("fireworksBtn").addEventListener("click", fireworks);
 
-/* 9th special visuals */
 const balloons=document.getElementById("balloons");
-for(let k=0;k<9;k++){
+for(let k=0;k<11;k++){
   const b=document.createElement("div");
   b.className="balloon";
-  const left=6 + k*10 + (Math.random()*6-3);
+  const left=4 + k*8 + (Math.random()*5-2);
   b.style.left=left+"%";
   b.style.animation=`float ${3500+Math.random()*1800}ms ease-in infinite`;
-  b.innerHTML=`<span>9</span><i></i>`;
+  b.innerHTML=`<span>11</span><i></i>`;
   balloons.appendChild(b);
 }
 
-/* Month meter */
 function monthsBetween(startStr){
   const d0=parseYYYYMMDD(startStr);
   const now=new Date();
@@ -1082,13 +1141,12 @@ function monthsBetween(startStr){
 }
 const mc=monthsBetween(CONFIG.startDate);
 document.getElementById("monthsCount").textContent = mc;
-const pct = Math.min(900, (mc || 9) * 100);
+const pct = Math.min(1100, (mc || 11) * 100);
 requestAnimationFrame(()=>{
   document.getElementById("meterBar").style.width = pct + "%";
   document.getElementById("meterPct").textContent = pct + "%";
 });
 
-/* Journey + timeline */
 const journey=document.getElementById("journey");
 CONFIG.journey.forEach(item=>{
   const c=document.createElement("div");
@@ -1104,7 +1162,6 @@ CONFIG.timeline.forEach(t=>{
   timeline.appendChild(r);
 });
 
-/* Level up rotator */
 const levelUpText=document.getElementById("levelUpText");
 let lvlIndex=0;
 function rotateLevelUp(){
@@ -1115,7 +1172,6 @@ function rotateLevelUp(){
 rotateLevelUp();
 setInterval(rotateLevelUp, 4200);
 
-/* Lite mode */
 document.getElementById("liteBtn").addEventListener("click", ()=>{
   const root=document.documentElement;
   const currentBg=getComputedStyle(root).getPropertyValue('--bg').trim();
@@ -1134,17 +1190,16 @@ document.getElementById("liteBtn").addEventListener("click", ()=>{
   }
 });
 
-/* Intro “9” balloons */
 (()=>{
   const wrap=document.getElementById("introBalloons");
   if(!wrap) return;
-  for(let i=0;i<9;i++){
+  for(let i=0;i<11;i++){
     const b=document.createElement("div");
     b.className="intro-balloon";
     b.style.setProperty('--dur', (3600 + Math.random()*2200) + "ms");
     b.style.left = (6 + Math.random()*88) + "vw";
     b.style.transform = `translateY(12vh) scale(${0.85 + Math.random()*0.35})`;
-    b.textContent="9";
+    b.textContent="11";
     const s=document.createElement("i");
     s.className="intro-string";
     b.appendChild(s);
@@ -1152,7 +1207,6 @@ document.getElementById("liteBtn").addEventListener("click", ()=>{
   }
 })();
 
-/* Apology hold-to-forgive */
 (()=>{
   const ul=document.getElementById("apolPoints");
   ul.innerHTML = CONFIG.apologyPoints.map(p=>`<li>${p}</li>`).join("");
@@ -1194,7 +1248,7 @@ document.getElementById("liteBtn").addEventListener("click", ()=>{
       bar.style.width=(progress*100).toFixed(0) + "%";
       if(progress>=1){
         clearTick(); down=false;
-        note.textContent="Salamat. Hindi ko sasayangin 'to. 🤍";
+        note.textContent="Salamat. Babawi ako, mahal. 🤍";
         gentleHearts(1800);
         confetti();
         reveal.style.display="block";
@@ -1202,7 +1256,7 @@ document.getElementById("liteBtn").addEventListener("click", ()=>{
     }, step);
   }
   function endHold(){
-    if(progress<1) note.textContent="Sige lang, handa akong maghintay. 🥺";
+    if(progress<1) note.textContent="Maghihintay ako hanggang handa ka na. 🥺";
     down=false; clearTick();
     setTimeout(()=>{ bar.style.width="0%"; progress=0; }, 350);
   }
@@ -1211,7 +1265,6 @@ document.getElementById("liteBtn").addEventListener("click", ()=>{
   btn.addEventListener("pointerleave", endHold);
 })();
 
-/* Future plans */
 const futureList=document.getElementById("futureList");
 CONFIG.futurePlans.forEach(f=>{
   const div=document.createElement("div");
@@ -1220,7 +1273,158 @@ CONFIG.futurePlans.forEach(f=>{
   futureList.appendChild(div);
 });
 
-/* Easter egg: double-tap hero title */
+(function(){
+  const gameArea = document.getElementById("heartGameArea");
+  const overlay = document.getElementById("heartGameOverlay");
+  const scoreEl = document.getElementById("heartScore");
+  const targetEl = document.getElementById("heartTarget");
+  const resultEl = document.getElementById("heartGameResult");
+  const startBtnGame = document.getElementById("startHeartGame");
+  const resetBtnGame = document.getElementById("resetHeartGame");
+
+  if(!gameArea || !overlay || !scoreEl || !targetEl || !resultEl || !startBtnGame || !resetBtnGame) return;
+
+  const TARGET = 11;
+  let score = 0;
+  let running = false;
+  let spawner = null;
+  let gameTimer = null;
+  let activeHearts = new Set();
+
+  targetEl.textContent = TARGET;
+
+  function clearHearts(){
+    activeHearts.forEach(el => el.remove());
+    activeHearts.clear();
+  }
+
+  function updateScore(){
+    scoreEl.textContent = score;
+  }
+
+  function winGame(){
+    running = false;
+    clearInterval(spawner);
+    clearTimeout(gameTimer);
+    overlay.style.display = "grid";
+    overlay.innerHTML = `You did it, mahal 💖`;
+    resultEl.innerHTML = `
+      <div>
+        <strong style="display:block;margin-bottom:6px">Nakuha mo lahat ng puso ko, mahal. 💗</strong>
+        <span class="muted">
+          Patawad sa mga pagkukulang ko. Sa 11th monthsary natin, gusto kong iparamdam sa’yo
+          na babawi ako — hindi lang sa salita, kundi sa oras, effort, consistency, at pagmamahal.
+          Aayusin ko ito kasama ka, mahal. 🥺💞
+        </span>
+      </div>
+    `;
+    confetti();
+    fireworks();
+  }
+
+  function loseGame(){
+    if(!running) return;
+    running = false;
+    clearInterval(spawner);
+    clearTimeout(gameTimer);
+    overlay.style.display = "grid";
+    overlay.innerHTML = `Try ulit, mahal 💗`;
+    resultEl.innerHTML = `
+      <div>
+        <strong style="display:block;margin-bottom:6px">Konti na lang sana, mahal. 🥺</strong>
+        <span class="muted">
+          Pero gaya ng game na ’to, hindi rin ako titigil bumawi sa’yo.
+          Pindutin mo lang ang reset o start ulit. 💞
+        </span>
+      </div>
+    `;
+  }
+
+  function removeHeart(el){
+    if(activeHearts.has(el)) activeHearts.delete(el);
+    el.remove();
+  }
+
+  function spawnHeartGame(){
+    if(!running) return;
+
+    const heart = document.createElement("button");
+    heart.type = "button";
+    heart.className = "falling-heart";
+    heart.textContent = Math.random() < 0.18 ? "💘" : "💗";
+
+    const maxLeft = Math.max(10, gameArea.clientWidth - 50);
+    const left = Math.floor(Math.random() * maxLeft);
+    const duration = 2200 + Math.random() * 1400;
+
+    heart.style.left = left + "px";
+    heart.style.animationDuration = duration + "ms";
+
+    const catchHeart = () => {
+      if(!running) return;
+      score++;
+      updateScore();
+      heart.classList.add("caught");
+      setTimeout(() => removeHeart(heart), 220);
+      if(score >= TARGET){
+        winGame();
+      }
+    };
+
+    heart.addEventListener("click", catchHeart);
+    heart.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      catchHeart();
+    }, {passive:false});
+
+    heart.addEventListener("animationend", () => {
+      removeHeart(heart);
+    });
+
+    gameArea.appendChild(heart);
+    activeHearts.add(heart);
+  }
+
+  function startGame(){
+    clearHearts();
+    score = 0;
+    updateScore();
+    running = true;
+    overlay.style.display = "none";
+    resultEl.innerHTML = `<span class="muted">Catch mo lang ang mga puso, mahal 💗</span>`;
+
+    clearInterval(spawner);
+    clearTimeout(gameTimer);
+
+    spawner = setInterval(() => {
+      if(!running) return;
+      spawnHeartGame();
+      if(Math.random() < 0.35){
+        setTimeout(() => { if(running) spawnHeartGame(); }, 260);
+      }
+    }, 520);
+
+    gameTimer = setTimeout(() => {
+      if(score < TARGET) loseGame();
+    }, 12000);
+  }
+
+  function resetGame(){
+    running = false;
+    clearInterval(spawner);
+    clearTimeout(gameTimer);
+    clearHearts();
+    score = 0;
+    updateScore();
+    overlay.style.display = "grid";
+    overlay.innerHTML = `Tap <strong>Start Game</strong>, then catch the falling hearts 💗`;
+    resultEl.innerHTML = `<span class="muted">Ready ka na ba, mahal? ✨</span>`;
+  }
+
+  startBtnGame.addEventListener("click", startGame);
+  resetBtnGame.addEventListener("click", resetGame);
+})();
+
 let lastTap=0;
 document.getElementById("heroTitle").addEventListener("click", ()=>{
   const now=Date.now();
@@ -1228,7 +1432,6 @@ document.getElementById("heroTitle").addEventListener("click", ()=>{
   lastTap=now;
 });
 
-/* Esc closes lightbox */
 window.addEventListener("keydown",(e)=>{ if(e.key==="Escape") document.getElementById("lightbox").style.display="none"; });
 </script>
 </body>
